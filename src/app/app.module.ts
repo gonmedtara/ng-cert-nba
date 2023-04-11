@@ -1,20 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
-import {HttpClientModule} from '@angular/common/http';
-import { TeamStatsComponent } from './team-stats/team-stats.component';
-import {FormsModule} from '@angular/forms';
-import { GameResultsComponent } from './game-results/game-results.component';
-import { GameStatsComponent } from './game-stats/game-stats.component';
+import { TeamStatsComponent } from './components/team-stats/team-stats.component';
+import { GameResultsComponent } from './components/game-results/game-results.component';
+import { GameStatsComponent } from './components/game-stats/game-stats.component';
+import { FilterConfDivPipe } from './pipes/filter-conf-div.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     TeamStatsComponent,
     GameResultsComponent,
-    GameStatsComponent
+    GameStatsComponent,
+    FilterConfDivPipe
   ],
   imports: [
     BrowserModule,
