@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { TeamStatsComponent } from './components/team-stats/team-stats.component';
 import { GameResultsComponent } from './components/game-results/game-results.component';
 import { GameStatsComponent } from './components/game-stats/game-stats.component';
+import { ModalWindowComponent } from './components/modal-window/modal-window.component';
 import { FilterConfDivPipe } from './pipes/filter-conf-div.pipe';
 
 @NgModule({
@@ -17,7 +18,8 @@ import { FilterConfDivPipe } from './pipes/filter-conf-div.pipe';
     TeamStatsComponent,
     GameResultsComponent,
     GameStatsComponent,
-    FilterConfDivPipe
+    ModalWindowComponent,
+    FilterConfDivPipe,
   ],
   imports: [
     BrowserModule,

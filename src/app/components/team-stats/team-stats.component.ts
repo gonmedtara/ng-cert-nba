@@ -16,12 +16,27 @@ export class TeamStatsComponent implements OnInit {
 
   games$!: Observable<Game[]>;
   stats!: Stats;
-  constructor(protected nbaService: NbaService) { }
+  modalOpen: boolean;
+  toDeleteTeam!: Team;
+  constructor(protected nbaService: NbaService) {
+    this.modalOpen = false;
+  }
 
   ngOnInit(): void {
     this.games$ = this.nbaService.getLastResults(this.team, 12).pipe(
       tap(games => this.stats = this.nbaService.getStatsFromGames(games, this.team))
     )
   }
+
+  confirmDelete(team: Team): void {
+    this.toDeleteTeam = team;
+    this.modalOpen = true;
+  }
+
+  deleteTeam(): void {
+    this.nbaService.removeTrackedTeam(this.toDeleteTeam);
+    this.modalOpen = false;
+  }
+
 
 }
