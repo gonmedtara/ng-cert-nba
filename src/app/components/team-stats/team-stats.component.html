@@ -1,6 +1,6 @@
 <div class="card" *ngIf="games$ | async as games">
   <div>
-    <h3>{{team.full_name}} [{{team.abbreviation}}] <span (click)="nbaService.removeTrackedTeam(team)">&times;</span></h3>
+    <h3>{{team.full_name}} [{{team.abbreviation}}] <span (click)="confirmDelete(team)">&times;</span></h3>
     <h6>{{team.conference}}ern conference</h6>
   </div>
   <hr/>
@@ -25,5 +25,16 @@
   <div>
     <button class="tertiary" [routerLink]=" 'results/'+ team.abbreviation">See game results >></button>
   </div>
-
+  <app-modal-window [isOpen]="modalOpen">
+    <header>
+      Confirm delete :
+    </header>
+    <body>
+      Are you sure you ant to remove this team ?
+    </body>
+    <footer>
+      <button (click)="modalOpen = false">No</button>
+      <button (click)="deleteTeam()">Yes</button>
+    </footer>
+  </app-modal-window>
 </div>
