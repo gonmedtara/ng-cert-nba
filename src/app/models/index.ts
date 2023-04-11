@@ -31,3 +31,11 @@ export interface Stats {
 }
 
 export type Result = 'W' | 'L';
+
+export type Division = Pick<Team, "id" | "name" | "conference">;
+
+export type Conference = Pick<Team, "id" | "name">;
+
+export type PipeFilterData = Team | Division | null;
+
+export type NotNullPipeFilterData = Team | Division;
