@@ -18,14 +18,14 @@ export class TeamStatsComponent implements OnInit {
   stats!: Stats;
   modalOpen: boolean;
   toDeleteTeam!: Team;
+  pageNumber: number;
   constructor(protected nbaService: NbaService) {
     this.modalOpen = false;
+    this.pageNumber = 6;
   }
 
   ngOnInit(): void {
-    this.games$ = this.nbaService.getLastResults(this.team, 12).pipe(
-      tap(games => this.stats = this.nbaService.getStatsFromGames(games, this.team))
-    )
+    this.fetchGamesStats();
   }
 
   confirmDelete(team: Team): void {
@@ -36,6 +36,13 @@ export class TeamStatsComponent implements OnInit {
   deleteTeam(): void {
     this.nbaService.removeTrackedTeam(this.toDeleteTeam);
     this.modalOpen = false;
+  }
+
+
+  fetchGamesStats(): void {
+    this.games$ = this.nbaService.getLastResults(this.team, this.pageNumber).pipe(
+      tap(games => this.stats = this.nbaService.getStatsFromGames(games, this.team))
+    )
   }
 
 

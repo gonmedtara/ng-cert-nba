@@ -5,7 +5,7 @@ import { map, Observable } from 'rxjs';
 import { format, subDays } from 'date-fns';
 
 import { Conference, Division, Game, Stats, Team } from '../models';
-import { BLANK_TEAM, CONFERENCES, DIVISIONS } from "../constants";
+import { CONFERENCES, DIVISIONS } from "../constants";
 
 @Injectable({
   providedIn: 'root'
@@ -47,8 +47,7 @@ export class NbaService {
   getAllTeams(): Observable<Team[]> {
     return this.http.get<{ data: Team[] }>(`${this.API_URL}/teams?page=0`,
       { headers: this.headers }).pipe(
-        map(res => ([BLANK_TEAM, ...res.data]))
-      );
+        map(res => res.data));
   }
 
   getLastResults(team: Team, numberOfDays = 12): Observable<Game[]> {

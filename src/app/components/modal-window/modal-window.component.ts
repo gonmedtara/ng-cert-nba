@@ -10,13 +10,16 @@ export class ModalWindowComponent implements OnChanges {
 
   @Input() isOpen!: boolean;
 
-  constructor(private _el: ElementRef) { }
+  constructor() { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['isOpen'] && changes['isOpen'].currentValue) {
-      this.modalHtml.nativeElement.show();
-    } else {
-      this.modalHtml.nativeElement.close();
+    if (!changes['isOpen'].firstChange) {
+      if (changes['isOpen'] && changes['isOpen'].currentValue) {
+        this.modalHtml.nativeElement.show();
+      } else {
+        this.modalHtml.nativeElement.close();
+      }
     }
+
   }
 }

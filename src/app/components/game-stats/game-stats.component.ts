@@ -47,7 +47,4 @@ export class GameStatsComponent {
     this.selectedDivision = '';
   }
 
-
-
-
 }

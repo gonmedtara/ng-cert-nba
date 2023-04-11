@@ -8,7 +8,13 @@
     <div class="row">
       <div class="col-sm-6">
         <p>
-          Results of past 12 days:
+          Results of past  	
+          <select [(ngModel)]="pageNumber" (change)="fetchGamesStats()">
+            <option>6</option>
+            <option>12</option>
+            <option>16</option>
+            <option>20</option>
+          </select> days:
         </p>
         <p>
           <mark class="tag" *ngFor="let result of stats.lastGames" [class]="result">{{result}}</mark>
@@ -23,7 +29,7 @@
     </div>
   </div>
   <div>
-    <button class="tertiary" [routerLink]=" 'results/'+ team.abbreviation">See game results >></button>
+    <button class="tertiary" [routerLink]="['/results', team.abbreviation, pageNumber]">See game results >></button>
   </div>
   <app-modal-window [isOpen]="modalOpen">
     <header>
