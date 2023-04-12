@@ -7,10 +7,9 @@ import { NbaService } from '../../services/nba.service';
 @Component({
   selector: 'app-team-stats',
   templateUrl: './team-stats.component.html',
-  styleUrls: ['./team-stats.component.css']
+  styleUrls: ['./team-stats.component.css'],
 })
 export class TeamStatsComponent implements OnInit {
-
   @Input()
   team!: Team;
 
@@ -38,12 +37,14 @@ export class TeamStatsComponent implements OnInit {
     this.modalOpen = false;
   }
 
-
   fetchGamesStats(): void {
-    this.games$ = this.nbaService.getLastResults(this.team, this.pageNumber).pipe(
-      tap(games => this.stats = this.nbaService.getStatsFromGames(games, this.team))
-    )
+    this.games$ = this.nbaService
+      .getLastResults(this.team, this.pageNumber)
+      .pipe(
+        tap(
+          (games) =>
+            (this.stats = this.nbaService.getStatsFromGames(games, this.team))
+        )
+      );
   }
-
-
 }

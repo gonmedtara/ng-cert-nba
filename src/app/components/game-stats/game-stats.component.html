@@ -1,24 +1,26 @@
 <div class="row">
   <div class="col-sm-11">
-    <select #confSelect (change)="handleConfSelect(confSelect.value)">
-      <option default value="null">Select conference</option>
-      <option [value]="conference.name" *ngFor="let conference of conferences; trackBy:trackByFn">
-        {{conference.name}}
-      </option>
+
+    <select [formControl]="fctrlConf">
+      <option default :value="null">Select conference</option>
+      <option  value="West">West conference</option>
+      <option  value="East">East conference</option>
     </select>
-    <select #divSelect (change)="selectedDivision = divSelect.value">
-      <option default value="null">Select division</option>
-      <option [value]="division.name" *ngFor="let division of divisions | filterConfDiv:selectedConference; trackBy:trackByFn">
+
+    <select [formControl]="fctrlDiv">
+      <option default :value="null">Select division</option>
+      <option [value]="division.name" *ngFor="let division of divisions | filterConfDiv:fctrlConf.value; trackBy:trackByFn">
         {{division.name}}
       </option>
     </select>
-    <select #teamSelect>
-      <option  default value="null">Select team</option>
-      <option [value]="team.id" *ngFor="let team of teams$ | async | filterConfDiv:selectedConference:selectedDivision; trackBy:trackByFn">
+
+    <select [formControl]="fctrlTeam" >
+      <option  default :value="null">Select team</option>
+      <option [value]="team.id" *ngFor="let team of teams$ | async | filterConfDiv:fctrlConf.value:fctrlDiv.value; trackBy:trackByFn">
         {{team.full_name}}
       </option>
     </select>
-    <button class="primary" (click)="trackTeam(teamSelect.value)" >Track team</button>
+    <button class="primary" [disabled]="!fctrlTeam.value" (click)="trackTeam(fctrlTeam.value)" >Track team</button>
   </div>
 
 </div>

@@ -1,16 +1,23 @@
-import { Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 
 @Component({
   selector: 'app-modal-window',
   templateUrl: './modal-window.component.html',
-  styleUrls: ['./modal-window.component.css']
+  styleUrls: ['./modal-window.component.css'],
 })
 export class ModalWindowComponent implements OnChanges {
   @ViewChild('modalHtml') modalHtml!: ElementRef;
 
   @Input() isOpen!: boolean;
 
-  constructor() { }
+  constructor() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes['isOpen'].firstChange) {
@@ -20,6 +27,5 @@ export class ModalWindowComponent implements OnChanges {
         this.modalHtml.nativeElement.close();
       }
     }
-
   }
 }
